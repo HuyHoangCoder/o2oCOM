@@ -50,7 +50,7 @@ function Home() {
 const fetchProductsByCategory = async (categoryId, setterFn) => {
   try {
     const res = await fetch(
-      `http://192.168.102.10:8000/products/products/by-category/${categoryId}`
+      `http://14.225.71.45:8000/products/products/by-category/${categoryId}`
     );
     if (res.ok) {
       const data = await res.json();
@@ -65,7 +65,7 @@ const fetchProductsByCategory = async (categoryId, setterFn) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://192.168.102.10:8000/products/products`);
+        const res = await fetch(`http://14.225.71.45:8000/products/products`);
 
         if (res.ok) {
           const data = await res.json();

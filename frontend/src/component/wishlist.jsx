@@ -12,7 +12,7 @@ function Wishlist() {
 
     const fetchWishlist = async () => {
       try {
-        const res = await fetch(`http://192.168.102.10:8000/wishlist/wishlist?user_id=${userId}`);
+        const res = await fetch(`http://14.225.71.45:8000/wishlist/wishlist?user_id=${userId}`);
         if (res.ok) {
           const data = await res.json();
           setWishlist(Array.isArray(data) ? data : []);
@@ -31,7 +31,7 @@ function Wishlist() {
   const handleRemove = async (productId) => {
     try {
       const res = await fetch(
-        `http://192.168.102.10:8000/wishlist/wishlist/${productId}?user_id=${userId}`,
+        `http://14.225.71.45:8000/wishlist/wishlist/${productId}?user_id=${userId}`,
         { method: "DELETE" }
       );
       if (res.ok) {

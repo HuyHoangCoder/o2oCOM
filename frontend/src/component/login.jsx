@@ -11,7 +11,7 @@ function Login() {
   const fetchUserId = async (username) => {
     try {
       const res = await fetch(
-        `http://192.168.102.10:8000/auth/users/${username}`
+        `http://14.225.71.45:8000/auth/users/${username}`
       );
       if (res.ok) {
         const data = await res.json();
@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
   };
 
   try {
-    const res = await fetch("http://192.168.102.10:8000/auth/login", {
+    const res = await fetch("http://14.225.71.45:8000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -72,7 +72,7 @@ const handleSubmit = async (e) => {
   const fetchAvatar = async (username) => {
     try {
       const res = await fetch(
-        `http://192.168.102.10:8000/users/${username}/avatar`
+        `http://14.225.71.45:8000/users/${username}/avatar`
       );
       if (res.ok) {
         const avatarUrl = await res.text();
@@ -93,13 +93,13 @@ const handleSubmit = async (e) => {
 
   const syncCartAfterLogin = async (username) => {
     try {
-      const res = await fetch(`http://192.168.102.10:8000/cart/${username}`);
+      const res = await fetch(`http://14.225.71.45:8000/cart/${username}`);
       if (res.ok) {
         const serverCart = await res.json();
         localStorage.setItem("cart", JSON.stringify(serverCart));
       } else {
         const localCart = JSON.parse(localStorage.getItem("cart")) || [];
-        await fetch(`http://192.168.102.10:8000/cart/${username}`, {
+        await fetch(`http://14.225.71.45:8000/cart/${username}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(localCart),
@@ -186,19 +186,19 @@ const handleSubmit = async (e) => {
         <div className="my-3 text-center">Hoặc đăng nhập bằng</div>
         <div className="d-flex justify-content-center gap-2 mb-3">
           <a
-            href="http://192.168.102.10:8000/auth/login/google"
+            href="http://14.225.71.45:8000/auth/login/google"
             className="btn btn-outline-danger d-flex align-items-center gap-2"
           >
             <i className="bi bi-google"></i> Google
           </a>
           <a
-            href="http://192.168.102.10:8000/auth/login/facebook"
+            href="http://14.225.71.45:8000/auth/login/facebook"
             className="btn btn-outline-primary d-flex align-items-center gap-2"
           >
             <i className="bi bi-facebook"></i> Facebook
           </a>
           <a
-            href="http://192.168.102.10:8000/auth/login/twitter"
+            href="http://14.225.71.45:8000/auth/login/twitter"
             className="btn btn-outline-info d-flex align-items-center gap-2"
           >
             <i className="bi bi-twitter"></i> Twitter

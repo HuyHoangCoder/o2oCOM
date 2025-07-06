@@ -29,7 +29,7 @@ function ForgotPassword() {
 
     try {
       const res = await fetch(
-        "http://192.168.102.10:8000/auth/forgot-password",
+        "http://14.225.71.45:8000/auth/forgot-password",
         {
           method: "POST",
           headers: {
@@ -79,7 +79,7 @@ function ForgotPassword() {
 
     try {
       const res = await fetch(
-        "http://192.168.102.10:8000/auth/reset-password",
+        "http://14.225.71.45:8000/auth/reset-password",
         {
           method: "POST",
           headers: {
@@ -112,7 +112,7 @@ function ForgotPassword() {
     params.append("email", form.email);
     try {
       const res = await fetch(
-        "http://192.168.102.10:8000/auth/resend-otp-forgot-password",
+        "http://14.225.71.45:8000/auth/resend-otp-forgot-password",
         {
           method: "POST",
           headers: {
