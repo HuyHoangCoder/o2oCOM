@@ -26,7 +26,7 @@ function Header() {
 
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/wishlist/${username}`
+          `http://14.225.71.45:8000/wishlist/${username}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -65,7 +65,7 @@ function Header() {
     const fetchUserInfo = async () => {
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/auth/users/${username}`
+          `http://14.225.71.45:8000/auth/users/${username}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -84,7 +84,7 @@ function Header() {
     const fetchAvatar = async () => {
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/users/${username}/avatar`
+          `http://14.225.71.45:8000/users/${username}/avatar`
         );
         if (res.ok) {
           const contentType = res.headers.get("Content-Type");

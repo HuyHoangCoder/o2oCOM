@@ -12,7 +12,7 @@ function FoodDetail() {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
-        const res = await fetch("http://192.168.102.10:8000/product/products");
+        const res = await fetch("http://14.225.71.45:8000/product/products");
         if (res.ok) {
           const data = await res.json();
           setAllProducts(data);
@@ -31,7 +31,7 @@ function FoodDetail() {
     const fetchDish = async () => {
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/product/product/${id}`
+          `http://14.225.71.45:8000/product/product/${id}`
         );
         if (res.ok) {
           const data = await res.json();

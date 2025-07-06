@@ -18,7 +18,7 @@ function AccountLayout() {
     const fetchUserInfo = async () => {
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/auth/users/${username}`
+          `http://14.225.71.45:8000/auth/users/${username}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -35,7 +35,7 @@ function AccountLayout() {
     const fetchAvatar = async () => {
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/users/${username}/avatar`
+          `http://14.225.71.45:8000/users/${username}/avatar`
         );
         if (res.ok) {
           // TH1: Server trả về chuỗi đường dẫn ảnh
@@ -47,7 +47,7 @@ function AccountLayout() {
             // Nếu đường dẫn là dạng "/static/avatar.jpg" thì cần ghép domain
             const completeUrl = avatarUrl.startsWith("http")
               ? avatarUrl
-              : `http://192.168.102.10:8000${avatarUrl}`;
+              : `http://14.225.71.45:8000${avatarUrl}`;
 
             setAvatar(completeUrl);
             localStorage.setItem("avatar", completeUrl);
@@ -82,7 +82,7 @@ function AccountLayout() {
 
     try {
       const res = await fetch(
-        `http://192.168.102.10:8000/users/${username}/avatar`,
+        `http://14.225.71.45:8000/users/${username}/avatar`,
         {
           method: "PUT",
           body: formData,
@@ -105,7 +105,7 @@ function AccountLayout() {
 
     try {
       const res = await fetch(
-        `http://192.168.102.10:8000/users/${username}/avatar`,
+        `http://14.225.71.45:8000/users/${username}/avatar`,
         {
           method: "DELETE",
         }

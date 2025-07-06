@@ -44,7 +44,7 @@ function Register() {
   };
 
   try {
-    const res = await fetch("http://192.168.102.10:8000/auth/register", {
+    const res = await fetch("http://14.225.71.45:8000/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ function Register() {
   };
 
   try {
-    const res = await fetch("http://192.168.102.10:8000/auth/verify-otp", {
+    const res = await fetch("http://14.225.71.45:8000/auth/verify-otp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ function Register() {
     const params = new URLSearchParams();
     params.append("email", emailForOtp);
     try {
-      const res = await fetch("http://192.168.102.10:8000/auth/resend-otp", {
+      const res = await fetch("http://14.225.71.45:8000/auth/resend-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

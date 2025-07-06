@@ -19,7 +19,7 @@ function Menu() {
     const fetchCategories = async () => {
       try {
         const res = await fetch(
-          "http://192.168.102.10:8000/categories/categories"
+          "http://14.225.71.45:8000/categories/categories"
         );
         const data = await res.json();
         setCategories(["Tất cả", ...data.map((cat) => cat.name)]);
@@ -33,7 +33,7 @@ function Menu() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://192.168.102.10:8000/products/products");
+        const res = await fetch("http://14.225.71.45:8000/products/products");
         const data = await res.json();
         setAllProducts(Array.isArray(data) ? data : []);
       } catch {
@@ -48,7 +48,7 @@ function Menu() {
     const fetchLikedProducts = async () => {
       try {
         const res = await fetch(
-          `http://192.168.102.10:8000/wishlist/wishlist?user_id=${userId}`
+          `http://14.225.71.45:8000/wishlist/wishlist?user_id=${userId}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -107,7 +107,7 @@ function Menu() {
     try {
       if (isLiked) {
         const res = await fetch(
-          `http://192.168.102.10:8000/wishlist/wishlist/${productId}?user_id=${userId}`,
+          `http://14.225.71.45:8000/wishlist/wishlist/${productId}?user_id=${userId}`,
           { method: "DELETE" }
         );
         if (res.ok) {
@@ -122,7 +122,7 @@ function Menu() {
         }
       } else {
         const res = await fetch(
-          `http://192.168.102.10:8000/wishlist/wishlist?user_id=${userId}`,
+          `http://14.225.71.45:8000/wishlist/wishlist?user_id=${userId}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
