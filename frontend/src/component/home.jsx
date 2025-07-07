@@ -2,6 +2,15 @@ import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import {
+  featuredDishes as featuredData,
+  comboDishes as comboData,
+  starters as startersData,
+  breakfast as breakfastData,
+  lunch as lunchData,
+  dinner as dinnerData,
+  bestSellers as bestSellersData,
+} from "../data/data.js";
 
 function Home() {
   const [likedItems, setLikedItems] = useState([]);
@@ -47,53 +56,14 @@ function Home() {
     toast.success(`Đã thêm "${dish.name}" vào giỏ hàng!`);
   };
 
-const fetchProductsByCategory = async (categoryId, setterFn) => {
-  try {
-    const res = await fetch(
-      `http://14.225.71.45:8000/products/products/by-category/${categoryId}`
-    );
-    if (res.ok) {
-      const data = await res.json();
-      setterFn(data);
-    }
-  } catch {
-    toast.error(`Lỗi lấy dữ liệu category ${categoryId}`);
-  }
-};
-
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`http://14.225.71.45:8000/products/products`);
-
-        if (res.ok) {
-          const data = await res.json();
-          setFeaturedDishes(data.filter((item) => item.is_active));
-          setBestSellers(data.filter((item) => item.is_best_seller));
-        }
-      } catch {
-        toast.error("Lỗi khi lấy danh sách sản phẩm!");
-      }
-
-      // Chỉnh theo đúng category_id của bạn
-      fetchProductsByCategory(1, setComboDishes);
-      fetchProductsByCategory(2, setStarters);
-      fetchProductsByCategory(3, setBreakfast);
-      fetchProductsByCategory(4, setLunch);
-      fetchProductsByCategory(5, setDinner);
-    };
-
-    fetchData();
-
-    window.addEventListener("cartUpdated", () =>
-      console.log("Giỏ hàng đã được cập nhật!")
-    );
-
-    return () =>
-      window.removeEventListener("cartUpdated", () =>
-        console.log("Giỏ hàng đã được cập nhật!")
-      );
+    setFeaturedDishes(featuredData);
+    setComboDishes(comboData);
+    setStarters(startersData);
+    setBreakfast(breakfastData);
+    setLunch(lunchData);
+    setDinner(dinnerData);
+    setBestSellers(bestSellersData);
   }, []);
 
   const renderProductCard = (dish, col = "col-6 col-md-4 col-lg-2") => (
@@ -140,13 +110,13 @@ const fetchProductsByCategory = async (categoryId, setterFn) => {
             <span className="product-price">
               {dish.price.toLocaleString()}₫
             </span>
-            <button
+            {/* <button
               className="btn btn-sm btn-cart"
               disabled={dish.stock_quantity === 0}
               onClick={() => handleAddToCart(dish)}
             >
               <i className="bi bi-cart-plus"></i> Đặt hàng
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -231,7 +201,7 @@ const fetchProductsByCategory = async (categoryId, setterFn) => {
             id="featured-scroll"
             style={{ scrollBehavior: "smooth" }}
           >
-            {featuredDishes.map((dish) => renderProductCard(dish))}
+            {featuredDishes.map((dish) => renderProductCard(dish,"col-6 col-md-4 col-lg-3"))}
           </div>
         </div>
       </section>
