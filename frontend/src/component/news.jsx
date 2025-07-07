@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { allNews, newsCategories } from "../data/data";
+import { useNavigate } from "react-router-dom";
 
 function News() {
   const [articles, setArticles] = useState([]);
@@ -8,6 +9,7 @@ function News() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCategories(newsCategories);
@@ -33,9 +35,8 @@ function News() {
           <div className="container section-title" data-aos="fade-up">
             <h2>Bài viết & Tin tức</h2>
             <p>
-              
               <span className="description-title">Bài viết & Tin tức </span>
-              <span> mới nhất</span>{" "}
+              <span> mới nhất</span>
             </p>
           </div>
           <div className="row">
@@ -86,7 +87,12 @@ function News() {
                         <h5 className="card-title">{article.title}</h5>
                         <small className="text-muted mb-2">{article.date} - {article.category}</small>
                         <p className="card-text flex-grow-1">{article.description}</p>
-                        <button className="btn btn-primary mt-2">Đọc thêm</button>
+                        <button
+                          className="btn btn-primary mt-2"
+                          onClick={() => navigate(`/news/${article.id}`)}
+                        >
+                          Đọc thêm
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -28,7 +28,9 @@ function FoodDetail() {
     }
 
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingIndex = storedCart.findIndex((item) => item.id === dish.product_id);
+    const existingIndex = storedCart.findIndex(
+      (item) => item.id === dish.product_id
+    );
 
     if (existingIndex !== -1) {
       storedCart[existingIndex].quantity += quantity;
@@ -47,117 +49,147 @@ function FoodDetail() {
     toast.success(`Đã thêm ${quantity} "${dish.name}" vào giỏ hàng!`);
   };
 
+  const similarProducts = allProducts.filter(
+    (p) =>
+      p.category_id === dish?.category_id && p.product_id !== dish?.product_id
+  );
+
   if (!dish) return null;
 
   return (
-    <div className="container food-detail-container">
-      <div className="food-detail-breadcrumb mb-3">
-        <Link to="/">Trang chủ</Link> / <Link to="/menu">Menu</Link> / <span>{dish.name}</span>
-      </div>
+    <div className="container py-4 food-detail-page">
+      {/* Breadcrumb */}
+      <nav className="mb-4">
+        <Link to="/" className="text-decoration-none">
+          Trang chủ
+        </Link>{" "}
+        /{" "}
+        <Link to="/menu" className="text-decoration-none">
+          Menu
+        </Link>{" "}
+        / <span className="fw-bold">{dish.name}</span>
+      </nav>
 
-      <div className="row gy-4 mb-4">
-        <div className="col-md-6">
-          <div className="food-detail-card">
-            <img src={dish.image_url} alt={dish.name} className="food-detail-image" />
+      {/* Chi tiết món ăn */}
+      <div className="row mb-5">
+        <div className="col-lg-6">
+          <div className="food-image-wrapper shadow-sm rounded">
+            <img
+              src={dish.image_url}
+              alt={dish.name}
+              className="img-fluid rounded"
+            />
+            {dish.stock_quantity === 0 && (
+              <div className="out-of-stock-banner">Hết hàng</div>
+            )}
           </div>
         </div>
 
-        <div className="col-md-6">
-          <div className="food-detail-card h-100">
-            <h2>{dish.name}</h2>
-            <div className="mb-2">
-              <span className="text-warning">★★★★☆</span>
-              <small className="ms-2 text-muted">(23 đánh giá)</small>
-            </div>
-            <span className={`food-detail-status ${dish.stock_quantity > 0 ? "instock" : "outofstock"}`}>
+        <div className="col-lg-6">
+          <h2 className="fw-bold">{dish.name}</h2>
+          <div className="mb-3">
+            <span className="text-warning fs-5">★★★★☆</span>
+            <small className="ms-2 text-muted">(23 đánh giá)</small>
+          </div>
+          <p className="text-muted mb-2">
+            Tình trạng:{" "}
+            <span
+              className={`fw-bold ${
+                dish.stock_quantity > 0 ? "text-success" : "text-danger"
+              }`}
+            >
               {dish.stock_quantity > 0 ? "Còn hàng" : "Hết hàng"}
             </span>
-            <p className="text-muted">Số lượng còn lại: {dish.stock_quantity}</p>
+          </p>
+          <p className="text-muted mb-2">Số lượng còn: {dish.stock_quantity}</p>
 
-            {dish.discount_percent > 0 && (
-              <div className="alert alert-success py-1">
-                🎉 Ưu đãi {dish.discount_percent}% - Giá chỉ còn{" "}
-                <strong>
-                  {Math.round(dish.price * (1 - dish.discount_percent / 100)).toLocaleString()}₫
-                </strong>
+          {dish.discount_percent > 0 ? (
+            <>
+              <h4 className="text-danger fw-bold">
+                {Math.round(
+                  dish.price * (1 - dish.discount_percent / 100)
+                ).toLocaleString()}
+                ₫
+              </h4>
+              <p className="text-muted text-decoration-line-through">
+                Giá gốc: {dish.price.toLocaleString()}₫
+              </p>
+              <div className="alert alert-success py-2">
+                🎉 Ưu đãi {dish.discount_percent}%
               </div>
-            )}
+            </>
+          ) : (
+            <h4 className="text-danger fw-bold">
+              {dish.price.toLocaleString()}₫
+            </h4>
+          )}
 
-            <div className="food-detail-price">{dish.price.toLocaleString()}₫</div>
-            <p className="food-detail-description">{dish.description}</p>
-
-            {dish.stock_quantity > 0 && (
-              <div>
-                <label className="me-2">Số lượng:</label>
-                <input
-                  type="number"
-                  min="1"
-                  className="quantity-input"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                />
-                <br />
-                <button className="btn-addcart mt-3" onClick={handleAddToCart}>
-                  <i className="bi bi-cart-plus me-2"></i>Thêm vào giỏ hàng
-                </button>
-              </div>
-            )}
-          </div>
+          <p className="mt-3">{dish.description}</p>
         </div>
       </div>
 
-      <div className="food-detail-card mb-4">
-        <h4>Thông tin chi tiết</h4>
-        <ul>
-          <li><strong>Danh mục:</strong> {dish.category}</li>
-          <li><strong>Thành phần:</strong> {dish.ingredients}</li>
-          <li><strong>Thời gian chế biến:</strong> {dish.cooking_time_minutes} phút</li>
-          <li><strong>Calories:</strong> {dish.calories} kcal</li>
+      {/* Thông tin chi tiết */}
+      <div className="p-4 mb-5 bg-light rounded shadow-sm">
+        <h5 className="fw-bold mb-3">Thông tin chi tiết</h5>
+        <ul className="list-unstyled">
+          <li>
+            <strong>Danh mục:</strong> {dish.category}
+          </li>
+          <li>
+            <strong>Thành phần:</strong> {dish.ingredients}
+          </li>
+          <li>
+            <strong>Thời gian chế biến:</strong> {dish.cooking_time_minutes}{" "}
+            phút
+          </li>
+          <li>
+            <strong>Calories:</strong> {dish.calories} kcal
+          </li>
         </ul>
       </div>
 
-      <div className="mb-4">
-        <h4>Món ăn tương tự</h4>
-        <div className="row gy-3">
-          {allProducts
-            .filter((product) => product.category_id === dish.category_id && product.product_id !== dish.product_id)
-            .slice(0, 4)
-            .map((product) => (
-              <div className="col-6 col-sm-4 col-md-3 mb-3" key={product.product_id}>
-                <div className="product-card position-relative h-100">
-                  <div className="image-wrapper position-relative">
-                    <img src={product.image_url} alt={product.name} className="img-fluid product-img rounded" />
-                    <div className="quick-view-overlay d-flex justify-content-center align-items-center">
-                      <Link to={`/menu/${product.product_id}`} className="quick-view-text">Xem chi tiết</Link>
-                    </div>
+      {/* Sản phẩm tương tự */}
+      {similarProducts.length > 0 && (
+        <div className="mb-4">
+          <h4 className="mb-3">Món ăn tương tự</h4>
+          <div className="row gy-3">
+            {similarProducts.slice(0, 4).map((product) => (
+              <div className="col-6 col-md-3" key={product.product_id}>
+                <div className="similar-product-card shadow-sm h-100">
+                  <div className="position-relative similar-product-img-wrapper">
+                    <img
+                      src={product.image_url}
+                      alt={product.name}
+                      className="img-fluid rounded w-100 h-100 object-cover"
+                    />
                     {product.stock_quantity === 0 && (
-                      <div className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center out-of-stock">
+                      <span className="badge bg-danger position-absolute top-0 start-0 m-1">
                         Hết hàng
-                      </div>
+                      </span>
                     )}
                   </div>
-                  <div className="product-info p-2">
-                    <h6 className="product-title">{product.name}</h6>
-                    <p className="product-desc">{product.description}</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <span className="product-price text-danger">{product.price.toLocaleString()}₫</span>
-                      <button
-                        className="btn btn-sm btn-outline-primary"
-                        disabled={product.stock_quantity === 0}
-                        onClick={() => {
-                          setDish(product);
-                          navigate(`/menu/${product.product_id}`);
-                        }}
-                      >
-                        <i className="bi bi-cart-plus me-1"></i> Xem nhanh
-                      </button>
-                    </div>
+
+                  <div className="p-2">
+                    <h6 className="fw-bold mb-1">{product.name}</h6>
+                    <p className="small text-muted mb-2">
+                      {product.description}
+                    </p>
+                    <p className="fw-bold text-danger mb-2">
+                      {product.price.toLocaleString()}₫
+                    </p>
+                    <Link
+                      to={`/menu/${product.product_id}`}
+                      className="btn btn-outline-primary btn-sm w-100"
+                    >
+                      Xem chi tiết
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <ToastContainer position="top-right" autoClose={2000} />
     </div>

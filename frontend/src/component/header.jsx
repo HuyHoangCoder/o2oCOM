@@ -58,7 +58,7 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to="/new" onClick={closeMobileNav}>
+              <Link to="/news" onClick={closeMobileNav}>
                 Bài viết
               </Link>
             </li>

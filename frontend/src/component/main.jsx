@@ -10,6 +10,7 @@ import Team from "./team.jsx";
 import Menu from "./menu.jsx";
 import FoodDetail from "./fooddetail.jsx";
 import News from "./news.jsx";
+import NewsDetail from "./newsdetail.jsx";
 
 function Main() {
   return (
@@ -19,15 +20,13 @@ function Main() {
       <main className="flex-grow-1">
         <Routes>
           <Route path="/" element={<Home />} />
-
           <Route path="/contact" element={<Contact />} />
           <Route path="/introduce" element={<Introduce />} />
           <Route path="/team" element={<Team />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path="/foodDetail" element={<FoodDetail/>}/>
-          <Route path="/new" element={<News/>}/>
-
-
+          <Route path="/menu/:id" element={<FoodDetail/>}/>
+          <Route path="/news" element={<News/>}/>
+          <Route path="/news/:id" element={<NewsDetail/>}/>
 
         </Routes>
       </main>
