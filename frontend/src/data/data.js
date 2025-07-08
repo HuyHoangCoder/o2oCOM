@@ -8,7 +8,7 @@ export const allProducts = [
     name: "Cơm gà",
     description: "Ngon bổ dưỡng",
     price: 45000,
-    image_url: "../src/assets/img/menu/comga1.jpg",
+    image_url: "/assets/img/menu/comga1.jpg",
     stock_quantity: 5,
     category: "Bữa trưa",
     category_id: 3,
@@ -22,7 +22,7 @@ export const allProducts = [
     name: "Bún bò",
     description: "Hương vị Huế",
     price: 50000,
-    image_url: "../src/assets/img/menu/comga2.jpeg",
+    image_url: "/assets/img/menu/comga2.jpeg",
     stock_quantity: 3,
     category: "Bữa sáng",
     category_id: 3,
@@ -36,7 +36,7 @@ export const allProducts = [
     name: "Cơm sườn",
     description: "Thơm ngon đậm đà",
     price: 55000,
-    image_url: "../src/assets/img/menu/comga3.jpg",
+    image_url: "/assets/img/menu/comga3.jpg",
     stock_quantity: 7,
     category: "Bữa trưa",
     category_id: 3,
@@ -48,7 +48,7 @@ export const allProducts = [
   {
   product_id: 4,
   name: "Cơm chiên hải sản",
-  image_url: "../src/assets/img/menu/menu-item-4.png",
+  image_url: "/assets/img/menu/menu-item-4.png",
   price: 65000,
   description: "Cơm chiên thơm ngon hải sản",
   category: "Cơm Chiên",
@@ -57,40 +57,40 @@ export const allProducts = [
   cooking_time_minutes: 15,
   calories: 450,
   stock_quantity: 20,
-  discount_percent: 10
+  discount_percent: 10,
 }
 
 ];
 
 
 export const adsProducts = [
-  { id: 1, title: "Ưu đãi Combo siêu tiết kiệm", image: "../src/assets/img/menu/comga5.jpg", link: "#" },
-  { id: 2, title: "Bữa sáng chỉ từ 25K", image: "../src/assets/img/menu/comga4.png", link: "#" },
+  { id: 1, title: "Ưu đãi Combo siêu tiết kiệm", image: "/assets/img/menu/comga5.jpg", link: "#" },
+  { id: 2, title: "Bữa sáng chỉ từ 25K", image: "/assets/img/menu/comga4.png", link: "#" },
 ];
 
 export const featuredDishes = [
-  { product_id: 1, name: "Cơm gà", description: "Ngon và bổ dưỡng", price: 45000, image_url: "../src/assets/img/menu/comga7.jpg", stock_quantity: 5, is_best_seller: true },
-  { product_id: 2, name: "Bún bò", description: "Đậm đà hương vị Huế", price: 50000, image_url: "../src/assets/img/menu/comga8.jpg", stock_quantity: 0, is_best_seller: false },
+  { product_id: 1, name: "Cơm gà", description: "Ngon và bổ dưỡng", price: 45000, image_url: "/assets/img/menu/comga7.jpg", stock_quantity: 5, is_best_seller: true },
+  { product_id: 2, name: "Bún bò", description: "Đậm đà hương vị Huế", price: 50000, image_url: "/assets/img/menu/comga8.jpg", stock_quantity: 5, is_best_seller: false },
 ];
 
 export const comboDishes = [
-  { product_id: 3, name: "Combo 1", description: "Cơm + nước", price: 70000, image_url: "../src/assets/img/menu/comga3.jpg", stock_quantity: 10 },
+  { product_id: 3, name: "Combo 1", description: "Cơm + nước", price: 70000, image_url: "/assets/img/menu/comga3.jpg", stock_quantity: 10 },
 ];
 
 export const starters = [
-  { product_id: 4, name: "Salad", description: "Rau sạch tươi ngon", price: 30000, image_url: "../src/assets/img/menu/comga2.jpeg", stock_quantity: 8 },
+  { product_id: 4, name: "Salad", description: "Rau sạch tươi ngon", price: 30000, image_url: "/assets/img/menu/comga2.jpeg", stock_quantity: 8 },
 ];
 
 export const breakfast = [
-  { product_id: 5, name: "Bánh mì", description: "Bánh mì Việt Nam", price: 25000, image_url: "../src/assets/img/menu/comga7.jpg", stock_quantity: 12 },
+  { product_id: 5, name: "Bánh mì", description: "Bánh mì Việt Nam", price: 25000, image_url: "/assets/img/menu/comga7.jpg", stock_quantity: 12 },
 ];
 
 export const lunch = [
-  { product_id: 6, name: "Phở bò", description: "Đặc sản Hà Nội", price: 55000, image_url: "../src/assets/img/menu/comga1.jpg", stock_quantity: 7 },
+  { product_id: 6, name: "Phở bò", description: "Đặc sản Hà Nội", price: 55000, image_url: "/assets/img/menu/comga1.jpg", stock_quantity: 7 },
 ];
 
 export const dinner = [
-  { product_id: 7, name: "Lẩu Thái", description: "Cay nồng hấp dẫn", price: 150000, image_url: "../src/assets/img/menu/comga2.jpeg", stock_quantity: 3 },
+  { product_id: 7, name: "Lẩu Thái", description: "Cay nồng hấp dẫn", price: 150000, image_url: "/assets/img/menu/comga2.jpeg", stock_quantity: 3 },
 ];
 
 export const bestSellers = featuredDishes.filter((item) => item.is_best_seller);
@@ -104,7 +104,7 @@ export const allNews = [
   {
     id: 1,
     title: "Khai trương chi nhánh mới tại TP.HCM",
-    image: "../src/assets/img/events-1.jpg",
+    image: "/assets/img/events-1.jpg",
     description: "Chúng tôi vui mừng thông báo khai trương chi nhánh mới tại trung tâm TP.HCM.",
     date: "01/07/2025",
     category: "Sự kiện",
@@ -113,7 +113,7 @@ export const allNews = [
   {
     id: 2,
     title: "Thực đơn tháng 7 siêu hấp dẫn",
-    image: "../src/assets/img/events-2.jpg",
+    image: "/assets/img/events-2.jpg",
     description: "Khám phá những món ăn hấp dẫn trong thực đơn tháng 7 tại O2OCOM.",
     date: "28/06/2025",
     category: "Ẩm thực",
@@ -122,10 +122,10 @@ export const allNews = [
   {
     id: 3,
     title: "Chương trình giảm giá 30% dành cho hội viên",
-    image: "../src/assets/img/events-3.jpg",
+    image: "/assets/img/events-3.jpg",
     description: "Đặc quyền dành riêng cho hội viên thân thiết của O2OCOM.",
     date: "20/06/2025",
     category: "Khuyến mãi",
     content: `Từ ngày 20/6 đến hết ngày 31/7/2025, các hội viên của O2OCOM sẽ được hưởng ưu đãi giảm giá 30% trên tổng hóa đơn khi dùng bữa tại nhà hàng.\n\nNhanh tay đăng ký trở thành hội viên để nhận ngay ưu đãi hấp dẫn này!`
-  }
+  },
 ];

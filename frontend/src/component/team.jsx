@@ -27,7 +27,7 @@ function Team() {
                     <img
                       alt=""
                       className="img-fluid"
-                      src="../src/assets/img/chefs/chefs-1.jpg"
+                      src="./assets/img/chefs/chefs-1.jpg"
                     />
                     <div className="social">
                       <a href="">
@@ -66,7 +66,7 @@ function Team() {
                     <img
                       alt=""
                       className="img-fluid"
-                      src="../src/assets/img/chefs/chefs-2.jpg"
+                      src="./assets/img/chefs/chefs-2.jpg"
                     />
                     <div className="social">
                       <a href="">
@@ -104,7 +104,7 @@ function Team() {
                     <img
                       alt=""
                       className="img-fluid"
-                      src="../src/assets/img/chefs/chefs-3.jpg"
+                      src="./assets/img/chefs/chefs-3.jpg"
                     />
                     <div className="social">
                       <a href="">

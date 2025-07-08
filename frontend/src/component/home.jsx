@@ -322,31 +322,7 @@ function Home() {
             <span className="description-title">được đặt nhiều nhất</span>
           </p>
         </div>
-        {/* Nút Scroll Trái */}
-        <button
-          className="btn btn-light position-absolute top-50 start-0 translate-middle-y shadow scroll-btn "
-          style={{ zIndex: 2 }}
-          onClick={() =>
-            document
-              .getElementById("best-sellersscroll")
-              .scrollBy({ left: -300, behavior: "smooth" })
-          }
-        >
-          <i className="bi bi-chevron-left"></i>
-        </button>
-
-        {/* Nút Scroll Phải */}
-        <button
-          className="btn btn-light position-absolute top-50 end-0 translate-middle-y shadow scroll-btn"
-          style={{ zIndex: 2 }}
-          onClick={() =>
-            document
-              .getElementById("best-sellersscroll")
-              .scrollBy({ left: 300, behavior: "smooth" })
-          }
-        >
-          <i className="bi bi-chevron-right"></i>
-        </button>
+       
         <div className="container scroll-horizontal-container">
           <div className="row gy-4 d-flex flex-nowrap overflow-auto mb-3"
             id="best-sellersscroll"

@@ -21,7 +21,7 @@ function Introduce() {
                 <img
                   alt=""
                   className="img-fluid mb-4"
-                  src="../src/assets/img/about.jpg"
+                  src="./assets/img/about.jpg"
                 />
                 <div className="book-a-table">
                   <h3>Liên hệ chúng tôi</h3>
@@ -65,11 +65,11 @@ function Introduce() {
                     <img
                       alt=""
                       className="img-fluid"
-                      src="../src/assets/img/comga4.png"
+                      src="./assets/img/comga4.png"
                     />
                     <a
                       className="glightbox pulsating-play-btn"
-                      href="../src/assets/img/noi_dung-.mp4"
+                      href="./assets/img/noi_dung-.mp4"
                     />
                   </div>
                 </div>
@@ -147,7 +147,7 @@ function Introduce() {
           </div>
         </section>
         <section className="stats section dark-background" id="">
-          <img alt="" data-aos="fade-in" src="../src/assets/img/stats-bg.jpg" />
+          <img alt="" data-aos="fade-in" src="./assets/img/stats-bg.jpg" />
           <div
             className="container position-relative"
             data-aos="fade-up"
@@ -249,7 +249,7 @@ function Introduce() {
                         <img
                           alt=""
                           className="img-fluid testimonial-img"
-                          src="../src/assets/img/testimonials/testimonials-1.jpg"
+                          src="./assets/img/testimonials/testimonials-1.jpg"
                         />
                       </div>
                     </div>
@@ -284,7 +284,7 @@ function Introduce() {
                         <img
                           alt=""
                           className="img-fluid testimonial-img"
-                          src="../src/assets/img/testimonials/testimonials-2.jpg"
+                          src="./assets/img/testimonials/testimonials-2.jpg"
                         />
                       </div>
                     </div>
@@ -319,7 +319,7 @@ function Introduce() {
                         <img
                           alt=""
                           className="img-fluid testimonial-img"
-                          src="../src/assets/img/testimonials/testimonials-3.jpg"
+                          src="./assets/img/testimonials/testimonials-3.jpg"
                         />
                       </div>
                     </div>
@@ -354,7 +354,7 @@ function Introduce() {
                         <img
                           alt=""
                           className="img-fluid testimonial-img"
-                          src="../src/assets/img/testimonials/testimonials-4.jpg"
+                          src="./assets/img/testimonials/testimonials-4.jpg"
                         />
                       </div>
                     </div>
@@ -384,7 +384,7 @@ function Introduce() {
                 <div
                   className="swiper-slide event-item d-flex flex-column justify-content-end"
                   style={{
-                    backgroundImage: "url(../src/assets/img/events-1.jpg)",
+                    backgroundImage: "url(./assets/img/events-1.jpg)",
                   }}
                 >
                   <h3>Đối Tác Doanh Nghiệp</h3>
@@ -401,7 +401,7 @@ function Introduce() {
                 <div
                   className="swiper-slide event-item d-flex flex-column justify-content-end"
                   style={{
-                    backgroundImage: "url(../src/assets/img/events-2.jpg)",
+                    backgroundImage: "url(./assets/img/events-2.jpg)",
                   }}
                 >
                   <h3>Nhà Cung Cấp Ẩm Thực</h3>
@@ -417,7 +417,7 @@ function Introduce() {
                 <div
                   className="swiper-slide event-item d-flex flex-column justify-content-end"
                   style={{
-                    backgroundImage: "url(../src/assets/img/events-3.jpg)",
+                    backgroundImage: "url(./assets/img/events-3.jpg)",
                   }}
                 >
                   <h3>Đối Tác Công Nghệ</h3>
@@ -433,7 +433,7 @@ function Introduce() {
                 <div
                   className="swiper-slide event-item d-flex flex-column justify-content-end"
                   style={{
-                    backgroundImage: "url(../src/assets/img/events-4.jpg)",
+                    backgroundImage: "url(./assets/img/events-4.jpg)",
                   }}
                 >
                   <h3>Tổ Chức Sự Kiện</h3>
@@ -449,7 +449,7 @@ function Introduce() {
                 <div
                   className="swiper-slide event-item d-flex flex-column justify-content-end"
                   style={{
-                    backgroundImage: "url(../src/assets/img/events-5.png)",
+                    backgroundImage: "url(./assets/img/events-5.png)",
                   }}
                 >
                   <h3>Đối Tác Truyền Thông</h3>
@@ -465,7 +465,7 @@ function Introduce() {
                 <div
                   className="swiper-slide event-item d-flex flex-column justify-content-end"
                   style={{
-                    backgroundImage: "url(../src/assets/img/events-6.jpg)",
+                    backgroundImage: "url(./assets/img/events-6.jpg)",
                   }}
                 >
                   <h3>Đối Tác Phát Triển Bền Vững</h3>
