@@ -6,6 +6,7 @@ class ProductIngredientBase(BaseModel):
     ingredient_id: int
     quantity: float
     unit: Optional[str] = None
+    name: Optional[str] = None  # 👈 THÊM CỘT NÀY
 
 class ProductIngredientCreate(ProductIngredientBase):
     pass
@@ -13,6 +14,7 @@ class ProductIngredientCreate(ProductIngredientBase):
 class ProductIngredientUpdate(BaseModel):
     quantity: Optional[float] = None
     unit: Optional[str] = None
+    name: Optional[str] = None  # 👈 THÊM CỘT NÀY
 
 class ProductIngredientOut(ProductIngredientBase):
     id: int

@@ -12,7 +12,7 @@ class OrderBase(BaseModel):
 
 
 class OrderCreate(OrderBase):
-    created_at: Optional[datetime] = None
+    pass  # Không nên để created_at ở đây
 
 
 class OrderUpdate(BaseModel):
@@ -20,7 +20,6 @@ class OrderUpdate(BaseModel):
     sales_summary_id: Optional[int] = None
     total_amount: Optional[float] = None
     status: Optional[str] = None
-    created_at: Optional[datetime] = None
 
 
 class OrderOut(OrderBase):

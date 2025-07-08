@@ -7,21 +7,28 @@ from app.models.ingredients import Ingredient
 from app.schemas.product_ingredients import ProductIngredientCreate, ProductIngredientOut, ProductIngredientUpdate
 from typing import List
 
-router = APIRouter(tags=["Product Ingredients"])
+router = APIRouter(tags=["Product Ingredients"], prefix="/admin/product-ingredients")
 
-# Danh sách nguyên liệu của 1 sản phẩm
+
+# ✅ Lấy danh sách nguyên liệu của 1 sản phẩm
 @router.get("/product/{product_id}/ingredients", response_model=List[ProductIngredientOut])
 def get_ingredients_of_product(product_id: int, db: Session = Depends(get_db)):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if not product:
+        raise HTTPException(status_code=404, detail="Sản phẩm không tồn tại.")
+    
     return db.query(ProductIngredient).filter(ProductIngredient.product_id == product_id).all()
 
-# Thêm nguyên liệu vào sản phẩm
+
+# ✅ Thêm nguyên liệu vào sản phẩm
+# ✅ Thêm nguyên liệu vào sản phẩm
 @router.post("/product/{product_id}/ingredients", response_model=ProductIngredientOut)
 def add_ingredient_to_product(product_id: int, data: ProductIngredientCreate, db: Session = Depends(get_db)):
-    product = db.query(Product).filter(Product.product_id == product_id).first()
+    product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
         raise HTTPException(status_code=404, detail="Sản phẩm không tồn tại.")
 
-    ingredient = db.query(Ingredient).filter(Ingredient.ingredient_id == data.ingredient_id).first()
+    ingredient = db.query(Ingredient).filter(Ingredient.id == data.ingredient_id).first()
     if not ingredient:
         raise HTTPException(status_code=404, detail="Nguyên liệu không tồn tại.")
 
@@ -29,14 +36,17 @@ def add_ingredient_to_product(product_id: int, data: ProductIngredientCreate, db
         product_id=product_id,
         ingredient_id=data.ingredient_id,
         quantity=data.quantity,
-        unit=data.unit
+        unit=data.unit,
+        name=data.name  # 👈 THÊM CỘT NÀY
     )
     db.add(new_item)
     db.commit()
     db.refresh(new_item)
     return new_item
 
-# Cập nhật nguyên liệu trong sản phẩm
+
+
+# ✅ Cập nhật nguyên liệu trong sản phẩm
 @router.put("/product/ingredients/{id}", response_model=ProductIngredientOut)
 def update_product_ingredient(id: int, data: ProductIngredientUpdate, db: Session = Depends(get_db)):
     item = db.query(ProductIngredient).filter(ProductIngredient.id == id).first()
@@ -50,7 +60,8 @@ def update_product_ingredient(id: int, data: ProductIngredientUpdate, db: Sessio
     db.refresh(item)
     return item
 
-# Xóa nguyên liệu khỏi sản phẩm
+
+# ✅ Xóa nguyên liệu khỏi sản phẩm
 @router.delete("/product/ingredients/{id}")
 def delete_product_ingredient(id: int, db: Session = Depends(get_db)):
     item = db.query(ProductIngredient).filter(ProductIngredient.id == id).first()
@@ -60,3 +71,11 @@ def delete_product_ingredient(id: int, db: Session = Depends(get_db)):
     db.delete(item)
     db.commit()
     return {"message": "Xóa nguyên liệu khỏi sản phẩm thành công"}
+# ✅ Lấy danh sách nguyên liệu của tất cả sản phẩm
+@router.get("/ingredients", response_model=List[ProductIngredientOut])
+def get_all_product_ingredients(db: Session = Depends(get_db)):
+    ingredients = db.query(ProductIngredient).all()
+    if not ingredients:
+        raise HTTPException(status_code=404, detail="Không có nguyên liệu nào.")
+    
+    return ingredients

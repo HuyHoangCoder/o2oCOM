@@ -8,7 +8,7 @@ from app.utils.email import generate_otp, send_otp_email
 from jose import jwt, JWTError
 import time, hashlib, datetime, re, os
 from dotenv import load_dotenv
-
+from typing import Optional
 router = APIRouter(tags=["Auth"])
 
 load_dotenv()
@@ -157,9 +157,24 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
         "role": user.role
     }
 
-@router.get("/users", response_model=list[UserOut])
-def get_all_users(db: Session = Depends(get_db)):
-    return db.query(User).all()
+@router.get("/users")
+def get_all_users(role: Optional[str] = Depends(lambda: None), db: Session = Depends(get_db)):
+    query = db.query(User)
+    if role:
+        query = query.filter(User.role == role)
+    users = query.all()
+
+    return [
+        {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "full_name": user.full_name,
+            "phone": user.phone,
+            "role": user.role
+        }
+        for user in users
+    ]
 
 @router.post("/forgot-password")
 async def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db)):

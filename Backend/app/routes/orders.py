@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.database import SessionLocal
+from app.models.franchisee import Franchisee
 from app.models.order import Order
 from app.schemas.order import OrderCreate, OrderUpdate, OrderOut
 from typing import List
@@ -18,13 +19,23 @@ def get_db():
 
 
 # ======== Thêm đơn hàng ========
-@router.post("/orders", response_model=OrderOut)
-def create_order(order: OrderCreate, db: Session = Depends(get_db)):
-    new_order_data = order.dict()
-    if not new_order_data.get("created_at"):
-        new_order_data["created_at"] = datetime.utcnow()
+@router.post("/orders")
+def create_order(payload: OrderCreate, db: Session = Depends(get_db)):
+    # Kiểm tra franchisee_id nếu có
+    if payload.franchisee_id:
+        franchisee = db.query(Franchisee).filter(Franchisee.id == payload.franchisee_id).first()
+        if not franchisee:
+            raise HTTPException(status_code=400, detail="Franchisee không tồn tại.")
+    else:
+        payload.franchisee_id = None  # Nếu không truyền thì để None
 
-    new_order = Order(**new_order_data)
+    new_order = Order(
+        user_id=payload.user_id,
+        franchisee_id=payload.franchisee_id,
+        sales_summary_id=payload.sales_summary_id,
+        total_amount=payload.total_amount,
+        status=payload.status or "pending"
+    )
     db.add(new_order)
     db.commit()
     db.refresh(new_order)

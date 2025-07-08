@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 class NotificationCreate(BaseModel):
     title: str
@@ -8,7 +9,7 @@ class NotificationOut(BaseModel):
     id: int
     title: str
     content: str
-    created_at: str
+    created_at: datetime  # ✅ Đúng kiểu datetime luôn, FastAPI tự convert
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # Nếu FastAPI báo cảnh báo về orm_mode
